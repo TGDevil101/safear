@@ -93,9 +93,40 @@ create policy certificates_public_verify on public.certificates for select using
 -- row, which is exactly the leak we are avoiding. Hence the function.)
 drop policy if exists workers_insert on public.workers;
 
+-- Being signed in is NOT the same as being staff. Supabase projects allow public
+-- email signup by default, and the anon key is necessarily published in the
+-- browser bundle — so anyone could self-register and, under a bare
+-- `auth.role() = 'authenticated'` check, read every worker's name and phone
+-- number. Membership in this table is the actual authorisation boundary.
+--
+-- Turning signup off in the dashboard is still worth doing; this is the part
+-- that survives someone turning it back on.
+create table if not exists public.admins (
+  user_id  uuid primary key references auth.users(id) on delete cascade,
+  email    text,
+  added_at timestamptz not null default now()
+);
+
+-- No policies, deliberately: the table is unreadable through PostgREST by any
+-- client. It is reached only via the SECURITY DEFINER function below.
+alter table public.admins enable row level security;
+
+create or replace function public.is_admin()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (select 1 from public.admins where user_id = auth.uid());
+$$;
+
+revoke all on function public.is_admin() from public;
+grant execute on function public.is_admin() to authenticated;
+
 drop policy if exists workers_read_staff on public.workers;
 create policy workers_read_staff on public.workers
-  for select using (auth.role() = 'authenticated');
+  for select using (public.is_admin());
 
 -- Registers a worker, or returns the existing one for that phone number, so a
 -- returning worker keeps their id and therefore their training history.
@@ -134,7 +165,7 @@ create policy completions_insert on public.completions for insert with check (tr
 
 drop policy if exists completions_read_staff on public.completions;
 create policy completions_read_staff on public.completions
-  for select using (auth.role() = 'authenticated');
+  for select using (public.is_admin());
 
 drop policy if exists certificates_insert on public.certificates;
 create policy certificates_insert on public.certificates for insert with check (true);

@@ -324,6 +324,22 @@ export async function listWorkerRows(): Promise<WorkerRow[]> {
   })
 }
 
+/**
+ * Signed in != staff. Authorisation is membership of the `admins` table, not
+ * the mere existence of a session — see the note above `admins` in schema.sql.
+ * The RLS policies enforce this on their own; checking it here as well is what
+ * turns "dashboard is mysteriously empty" into a plain failed login.
+ */
+async function isAdmin(): Promise<boolean> {
+  if (!hasSupabase || !supabase) return false
+  try {
+    const { data, error } = await supabase.rpc('is_admin')
+    return !error && data === true
+  } catch {
+    return false
+  }
+}
+
 export async function adminSignIn(email: string, password: string): Promise<boolean> {
   if (!hasSupabase || !supabase) {
     // Local-only mode: the dashboard is still demonstrable without an auth
@@ -331,7 +347,15 @@ export async function adminSignIn(email: string, password: string): Promise<bool
     return true
   }
   const { error } = await supabase.auth.signInWithPassword({ email, password })
-  return !error
+  if (error) return false
+
+  if (!(await isAdmin())) {
+    // A valid Supabase user who is not on the allowlist. Drop the session so
+    // they are not left holding one that every guard would reject anyway.
+    await supabase.auth.signOut()
+    return false
+  }
+  return true
 }
 
 export async function adminSignOut(): Promise<void> {
@@ -341,5 +365,6 @@ export async function adminSignOut(): Promise<void> {
 export async function adminSession(): Promise<boolean> {
   if (!hasSupabase || !supabase) return false
   const { data } = await supabase.auth.getSession()
-  return Boolean(data.session)
+  if (!data.session) return false
+  return isAdmin()
 }
