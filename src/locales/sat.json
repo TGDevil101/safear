@@ -1,0 +1,10 @@
+{
+  "_README": "SANTALI (Ol Chiki) — PLACEHOLDER FILE, NOT PRODUCTION COPY. The language infrastructure is complete and proven: the 'sat' option appears in the switcher, Noto Sans Ol Chiki loads, and the script renders. The TRANSLATIONS ARE NOT. Only strings verified with a Santali speaker belong in this file. Every key left absent falls back to Hindi (see i18n.ts fallback chain), so the app stays fully usable meanwhile. DO NOT machine-translate into this file and DO NOT present Santali as complete to judges or DGMS until a native speaker has reviewed it. See README.md for the handoff note.",
+
+  "app": {
+    "name": "ᱥᱮᱯᱷ-ᱮᱟᱨ"
+  },
+  "moduleList": {
+    "greeting": "ᱡᱚᱦᱟᱨ, {{name}}"
+  }
+}

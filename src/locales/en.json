@@ -1,0 +1,209 @@
+{
+  "app": {
+    "name": "SafeAR",
+    "tagline": "Industrial Safety Training in Augmented Reality"
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "continue": "Continue",
+    "loading": "Loading…",
+    "retry": "Try again",
+    "offline": "Offline — your progress is saved on this phone and will sync later."
+  },
+  "login": {
+    "title": "Worker Sign In",
+    "subtitle": "Enter your details to begin safety training",
+    "name": "Full name",
+    "namePlaceholder": "e.g. Ramu Munda",
+    "phone": "Phone number",
+    "phonePlaceholder": "10-digit mobile number",
+    "department": "Department",
+    "start": "Start Training",
+    "errName": "Please enter your name.",
+    "errPhone": "Please enter a valid 10-digit phone number."
+  },
+  "departments": {
+    "mining": "Underground Mining",
+    "processing": "Ore Processing",
+    "steel": "Steel Plant",
+    "maintenance": "Maintenance",
+    "contract": "Contract Labour"
+  },
+  "moduleList": {
+    "title": "Safety Modules",
+    "greeting": "Namaste, {{name}}",
+    "locked": "Complete the previous module to unlock",
+    "passed": "Certified",
+    "start": "Start",
+    "review": "Review",
+    "viewCert": "View certificate",
+    "arMode": "AR mode",
+    "markerMode": "Camera + marker",
+    "demoMode": "No marker",
+    "markerModeHint": "Point the camera at a printed Hiro marker.",
+    "demoModeHint": "Runs without a marker. Use if the camera or lighting is unreliable.",
+    "getMarker": "Download the printable marker"
+  },
+  "ar": {
+    "begin": "Tap to begin",
+    "pointAtMarker": "Point your camera at the marker",
+    "markerHint": "Keep the printed marker flat and fully in frame.",
+    "replayAudio": "Play instruction again",
+    "skipStep": "Skip this step",
+    "arjsFailed": "Could not load the AR engine. Check your connection, or run this module without a marker.",
+    "switchToDemo": "Go back and switch to “No marker”"
+  },
+  "debrief": {
+    "title": "Module complete",
+    "subtitle": "Here is what you practised",
+    "startQuiz": "Start Assessment"
+  },
+  "quiz": {
+    "title": "Assessment",
+    "question": "Question {{current}} of {{total}}",
+    "submit": "Submit answer",
+    "passTitle": "Passed",
+    "failTitle": "Not passed",
+    "score": "Your score: {{score}}%",
+    "passNeeded": "You need {{pass}}% to pass.",
+    "correctAnswer": "Correct answer",
+    "yourAnswer": "You answered",
+    "cooldown": "You can retry in {{seconds}}s",
+    "retry": "Retry assessment",
+    "generating": "Creating your certificate…",
+    "viewCert": "View my certificate",
+    "reviewTitle": "Review your answers"
+  },
+  "cert": {
+    "title": "Certificate of Competency",
+    "issuedTo": "Issued to",
+    "module": "Module",
+    "score": "Score",
+    "issued": "Issued on",
+    "validUntil": "Valid until",
+    "certId": "Certificate ID",
+    "scanHint": "Scan this code to verify",
+    "backToModules": "Back to modules",
+    "share": "Share",
+    "notFound": "Certificate not found."
+  },
+  "verify": {
+    "title": "Certificate Verification",
+    "checking": "Verifying…",
+    "valid": "VALID CERTIFICATE",
+    "expired": "EXPIRED CERTIFICATE",
+    "invalid": "NOT FOUND",
+    "invalidHelp": "No certificate matches this code. It may be forged or cancelled.",
+    "expiredHelp": "This certificate has passed its validity date. The worker must re-certify.",
+    "enterId": "Enter a certificate ID",
+    "check": "Verify",
+    "issuedBy": "Issued by SafeAR · Government of Jharkhand pilot",
+    "unreachable": "CANNOT VERIFY",
+    "unreachableHelp": "This device cannot reach the certificate register right now, so this code could not be checked. This is NOT a failed verification — the certificate may well be valid. Try again once you have a connection."
+  },
+  "admin": {
+    "loginTitle": "Safety Officer Login",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "dashTitle": "Compliance Dashboard",
+    "totalWorkers": "Workers",
+    "certified": "Certified",
+    "pending": "Pending",
+    "expiring": "Expiring soon",
+    "filterDept": "All departments",
+    "filterModule": "All modules",
+    "filterStatus": "All statuses",
+    "search": "Search name or phone",
+    "export": "Export CSV",
+    "colName": "Name",
+    "colPhone": "Phone",
+    "colDept": "Department",
+    "colModules": "Modules passed",
+    "colLast": "Last assessment",
+    "colScore": "Score",
+    "colStatus": "Certificate",
+    "statusValid": "Valid",
+    "statusExpired": "Expired",
+    "statusPending": "Pending",
+    "empty": "No workers match this filter.",
+    "quickVerify": "Quick verify a certificate ID",
+    "loginError": "Sign-in failed. Check the email and password."
+  },
+  "modules": {
+    "fire": {
+      "name": "Fire & Explosion Response",
+      "desc": "Identify a fire, choose the right extinguisher, evacuate safely.",
+      "brief": "An electrical panel has caught fire in your work area. You will identify the hazard, pick the correct extinguisher, find a clear exit, complete the headcount and give the all-clear.",
+      "debrief": "You practised identifying a fire hazard, selecting CO₂ for an electrical fire, choosing an unblocked exit, running an evacuation headcount in order, and signalling all-clear to your supervisor.",
+      "s1": {
+        "title": "Step 1 · Identify the hazard",
+        "prompt": "Look around. Tap the fire hazard as soon as you see it.",
+        "wrong": "That is not the hazard. Look for flames or smoke — here, the electrical panel is burning.",
+        "ok": "Correct. The electrical panel is on fire."
+      },
+      "s2": {
+        "title": "Step 2 · Choose the extinguisher",
+        "prompt": "This is an electrical fire near a panel. Tap the correct extinguisher.",
+        "wrong": "Wrong choice. Water and foam conduct electricity and can electrocute you. Use CO₂ on electrical fires.",
+        "ok": "Correct. CO₂ is safe on live electrical equipment."
+      },
+      "s3": {
+        "title": "Step 3 · Find the exit",
+        "prompt": "Follow the green arrows. Tap the exit that is actually clear.",
+        "wrong": "That route is blocked by debris. Never force a blocked exit — take the clear one.",
+        "ok": "Correct. That exit is clear and reachable."
+      },
+      "s4": {
+        "title": "Step 4 · Evacuation headcount",
+        "prompt": "Tap the three evacuation steps in the correct order, top to bottom.",
+        "wrong": "Out of order. Reach the assembly point first, then count workers, then report anyone missing.",
+        "ok": "Correct. Assemble, count, then report."
+      },
+      "s5": {
+        "title": "Step 5 · All clear",
+        "prompt": "The area is safe. Tap ALL CLEAR to close the emergency.",
+        "wrong": "Not yet. Give the all-clear signal to end the emergency.",
+        "ok": "Well done. The emergency is closed."
+      }
+    },
+    "gas": {
+      "name": "Gas Leak & Confined Space",
+      "desc": "Spot a leak, wear the right PPE, use the buddy system, escape upwind.",
+      "brief": "A gas leak has been reported near a confined vessel. You will locate the leak, select the correct PPE, set up the buddy system, evacuate upwind and raise the alarm for a collapsed worker.",
+      "debrief": "You practised locating a leaking joint, choosing SCBA and gas-rated gloves, assigning entrant and standby roles, evacuating upwind of the cloud, and — most importantly — raising the alarm instead of entering to rescue.",
+      "s1": {
+        "title": "Step 1 · Find the leak",
+        "prompt": "Gas is escaping somewhere on this pipe. Tap the source of the leak.",
+        "wrong": "That is not leaking. Look for the joint with escaping vapour around it.",
+        "ok": "Correct. The valve joint is leaking."
+      },
+      "s2": {
+        "title": "Step 2 · Select your PPE",
+        "prompt": "Tap the two items you must wear before approaching: breathing protection and hand protection.",
+        "wrong": "That will not protect you. A dust mask does not stop toxic gas, and ear muffs are irrelevant here.",
+        "ok": "Correct. SCBA mask and gas-rated gloves."
+      },
+      "s3": {
+        "title": "Step 3 · Buddy system",
+        "prompt": "Assign roles. Tap the worker who enters first, then the worker who stays outside.",
+        "wrong": "Wrong order. Tap the entrant first, then the standby who never enters the space.",
+        "ok": "Correct. One entrant inside, one standby outside at all times."
+      },
+      "s4": {
+        "title": "Step 4 · Evacuate",
+        "prompt": "The cloud is drifting. Tap the exit that takes you upwind, away from the gas.",
+        "wrong": "That exit leads into the gas cloud. Always move upwind, across the wind if you must.",
+        "ok": "Correct. Upwind and clear of the cloud."
+      },
+      "s5": {
+        "title": "Step 5 · Raise the alarm",
+        "prompt": "Your buddy has collapsed inside. Tap the correct action.",
+        "wrong": "Never enter to rescue. Most confined-space deaths are would-be rescuers. Raise the alarm and wait for trained rescuers with breathing apparatus.",
+        "ok": "Correct. Raise the alarm — trained rescuers with air supply go in, never you."
+      }
+    }
+  }
+}

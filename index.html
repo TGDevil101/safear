@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <title>SafeAR — Industrial Safety Training</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Sans+Ol+Chiki&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      A-Frame is a classic blocking script, NOT an npm import: it registers
+      global custom elements and expects to run before any <a-scene> is parsed.
+      Bundling it through Vite breaks its side-effectful init.
+
+      AR.js is deliberately NOT loaded here. Its `arjs` A-Frame system
+      initialises from schema defaults on ANY scene once the script is present
+      — and sourceType defaults to "webcam" — so merely including it made the
+      marker-less demo mode request a camera and then paint a "Webcam Error"
+      banner over the scene. ARScene.tsx loads it on demand, marker mode only.
+    -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SafeAR — Printable Hiro Marker</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 32px;
+        color: #0f172a;
+        background: #f8fafc;
+      }
+      .sheet {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 0 4px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #334155;
+      }
+      ol {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #334155;
+      }
+      .marker {
+        display: block;
+        width: 400px;
+        height: 400px;
+        margin: 24px auto;
+        image-rendering: pixelated;
+        border: 1px solid #cbd5e1;
+        background: #fff;
+      }
+      .fallback {
+        display: none;
+        padding: 16px;
+        border: 1px solid #f59e0b;
+        background: #fffbeb;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      .noprint button {
+        font: inherit;
+        padding: 10px 18px;
+        border: 0;
+        border-radius: 8px;
+        background: #ea580c;
+        color: #fff;
+        cursor: pointer;
+      }
+      code {
+        background: #e2e8f0;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+      @media print {
+        .noprint {
+          display: none;
+        }
+        body {
+          background: #fff;
+          padding: 0;
+        }
+        .marker {
+          width: 150mm;
+          height: 150mm;
+          border: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sheet">
+      <div class="noprint">
+        <h1>SafeAR — printable Hiro marker</h1>
+        <p>
+          Print this page at <strong>100% scale</strong> (not "fit to page") on A4. The black border
+          must stay crisp and the sheet must lie flat — a curled or glossy marker is the most common
+          reason tracking fails.
+        </p>
+        <ol>
+          <li>Print on plain matte white paper. Avoid glossy photo paper: it reflects and blinds the camera.</li>
+          <li>Tape it to stiff card so it cannot curl.</li>
+          <li>Light it evenly. Direct overhead spotlights create glare across the black border.</li>
+          <li>Keep the whole square in frame, roughly 30–60 cm from the phone.</li>
+        </ol>
+        <p>
+          If tracking still fails on demo day, switch the app to <strong>"No marker"</strong> mode on
+          the module screen — the same scenario runs without the camera.
+        </p>
+        <p><button onclick="window.print()">Print</button></p>
+      </div>
+
+      <img
+        class="marker"
+        alt="Hiro marker"
+        src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.7/data/images/hiro.png"
+        onerror="document.getElementById('fb').style.display='block'; this.style.display='none';"
+      />
+
+      <div class="fallback" id="fb">
+        <strong>Could not load the marker image.</strong> You are offline, or the CDN is blocked.
+        Download it directly from the AR.js repository and print that file instead:
+        <p>
+          <code>https://github.com/AR-js-org/AR.js/blob/master/data/images/hiro.png</code>
+        </p>
+        <p>
+          Save a copy into <code>public/markers/hiro.png</code> so this page works offline next
+          time.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
