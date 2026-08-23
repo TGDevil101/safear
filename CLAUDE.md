@@ -77,3 +77,23 @@ it is the one thing a green build will not catch.
 `supabase/schema.sql` grants anonymous `SELECT` on `certificates` with `using (true)`. Acceptable for
 a hackathon demo over synthetic data; must be replaced with a `SECURITY DEFINER`
 `verify_certificate(uuid)` function before any real pilot. See the note at the policy itself.
+
+## Why not MongoDB Atlas (asked and answered)
+
+The datastore looks swappable — all coupling is nine call sites in `src/lib/data.ts` behind
+`hasSupabase` guards, plus one cosmetic import in `AdminLogin.tsx`. It is not, and the reason is
+not in the code.
+
+Supabase works from a static SPA because PostgREST is an HTTP API and the anon key is constrained
+by RLS. MongoDB has no browser-safe equivalent: Atlas App Services / Realm Web SDK / Data API
+reached EOL around September 2025. A connection string is a full-privilege TCP credential and
+cannot ship in a Vite bundle.
+
+So "move to Atlas" actually means: ~6 Vercel serverless routes, hand-rolled JWT admin auth
+replacing Supabase Auth, the RLS policies re-implemented per route, `seed.sql` rewritten as a Node
+script, and `data.ts` moved to `fetch('/api/...')`. Deferred past SIH26041 — the Supabase path was
+already built and tested, and swapping datastores days before a demo means presenting code that
+has never been run.
+
+Worth doing afterwards, because it dissolves the limitation above: with a server route mediating
+the lookup, the anonymous blanket `SELECT` on `certificates` is no longer needed at all.
